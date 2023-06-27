@@ -1,30 +1,44 @@
 package parking;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
 
 public class Parking {
-    private final Set<Car> cars = new HashSet<>();
+    private final ChargePolicy chargePolicy;
+    private final HashMap<Car, Long> history = new HashMap<>();
 
-    public void in(Car car) {
-        // 차량 번호가 같은 경우 무반응
-        if (cars.contains(car)) return;
-        System.out.printf("입차 %s\n", car);
-        cars.add(car);
+    private Parking(final ChargePolicy chargePolicy) {
+        this.chargePolicy = chargePolicy;
     }
 
-    public void out(Car car) {
-        System.out.printf("출차 %s\n", car);
-        cars.remove(car);
+    public static Parking init(final ChargePolicy chargePolicy) {
+        return new Parking(chargePolicy);
+    }
+
+    public void in(final Car car, final Time time) {
+        // 차량 번호가 같은 경우 무반응
+        if (history.containsKey(car)) return;
+        System.out.println("입차");
+        System.out.printf("<-- %s\n", car);
+        history.put(car, time.getMinutes());
+        printInfo();
+    }
+
+    public void out(final Car car, final Time time) {
+        long minutes = time.getMinutes() - history.get(car);
+        long charge = chargePolicy.calculate(minutes);
+        System.out.println("출차");
+        System.out.printf("--> %s\n이용 시간:%d[min] 요금:%d\n", car, minutes, charge);
+        history.remove(car);
+        printInfo();
     }
 
     public void printInfo() {
         System.out.println("==========================================================");
-        System.out.printf("[%s] 현재 주차 상황 %d대\n", LocalDateTime.now(), cars.size());
-        for (Car car : cars) {
-            System.out.println(car);
+        System.out.printf("현재 주차 상황 %d대\n", history.size());
+        int index = 1;
+        for (Car car : history.keySet()) {
+            System.out.printf("%d : %s\n", index++, car);
         }
-        System.out.println("==========================================================");
+        System.out.println("==========================================================\n");
     }
 }

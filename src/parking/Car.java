@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Car {
     private final String id;
 
-    public Car(String id) {
+    public Car(final String id) {
         this.id = id;
     }
 

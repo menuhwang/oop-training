@@ -2,23 +2,30 @@ package parking;
 
 public class Main {
     public static void main(String[] args) {
-        Parking parking = new Parking();
-        Car car1 = new Car("11차 0000");
-        Car duplicated = new Car("11차 0000");
-        Car car2 = new Car("20차 1000");
-        Car car3 = new Car("00차 1200");
+        final int basicTime = 30;
+        final int basicCharge = 600;
+        final int unitTime = 60;
+        final int unitCharge = 1200;
 
-        parking.printInfo();
+        String[] carIds = {"11차 0000", "20차 1000", "00차 1200"};
 
-        parking.in(car1);
-        parking.in(duplicated);
-        parking.printInfo();
+        ChargePolicy chargePolicy = new ChargePolicy(basicTime, basicCharge, unitTime, unitCharge);
+        Parking parking = Parking.init(chargePolicy);
 
-        parking.in(car2);
-        parking.in(car3);
-        parking.printInfo();
+        Car[] cars = new Car[carIds.length];
+        for (int i = 0; i < cars.length; i++) {
+            cars[i] = new Car(carIds[i]);
+        }
 
-        parking.out(car1);
-        parking.printInfo();
+        parking.in(cars[0], Time.of(8, 0));
+        parking.in(cars[0], Time.of(8, 1));
+
+        parking.in(cars[1], Time.of(8, 20));
+        parking.in(cars[2], Time.of(8, 30));
+
+        parking.out(cars[2], Time.of(8, 50));
+
+        parking.out(cars[1], Time.of(17, 50));
+        parking.out(cars[0], Time.of(17, 59));
     }
 }

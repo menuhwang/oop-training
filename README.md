@@ -5,7 +5,7 @@
 ### 객체
 - Parking: 주차장
     > cars: 현재 주차된 차량
-- ChargePolicy: 요금 정잭
+- ChargePolicy: 요금 정책
   > basicTime: 기본 시간
   > 
   > basicCharge: 기본 요금

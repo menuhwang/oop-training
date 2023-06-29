@@ -4,21 +4,31 @@
 
 ### 객체
 - Parking: 주차장
-    > cars: 현재 주차된 차량
+  ```
+    chargePolicy: 요금 정책
+    history: 입차 내역
+    cashier: 캐셔
+  ```
 - ChargePolicy: 요금 정책
-  > basicTime: 기본 시간
-  > 
-  > basicCharge: 기본 요금
-  > 
-  > unitTime: 추가 시간 단위
-  > 
-  > unitCharge: 추가 시간 당 요금
+  ```
+    basicTime: 기본 시간
+    basicCharge: 기본 요금
+    unitTime: 추가 시간 단위
+    unitCharge: 추가 시간 당 요금
+  ```
 - Car: 차
-    > id: 차량 번호
+  ```
+    id: 차량 번호
+  ```
 - Time: 입출차 시간
-  > hour: 시
-  >
-  > minute: 분
+  ```
+    hour: 시
+    minute: 분
+  ```
+- Cashier: 캐셔
+  ```
+    history: 주차장의 입차 내역
+  ```
 
 ### 기능
 
@@ -41,6 +51,7 @@
 
 ### Log
 
+- [2023.06.28] 입출차 관리 및 정산을 담당하는 캐셔 고용
 - [2023.06.27] 요금 계산 시스템 추가
 - [2023.06.27] Car 객체 생성, Parking 주차된 차량 저장
 - [2023.06.27] 입차, 출차 기능 생성

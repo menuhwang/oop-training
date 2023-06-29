@@ -9,13 +9,17 @@ public class Main {
 
         String[] carIds = {"11차 0000", "20차 1000", "00차 1200"};
 
-        ChargePolicy chargePolicy = new ChargePolicy(basicTime, basicCharge, unitTime, unitCharge);
-        Parking parking = Parking.init(chargePolicy);
-
         Car[] cars = new Car[carIds.length];
         for (int i = 0; i < cars.length; i++) {
             cars[i] = new Car(carIds[i]);
         }
+
+        ChargePolicy chargePolicy = new ChargePolicy(basicTime, basicCharge, unitTime, unitCharge);
+        Cashier cashier = new Cashier();
+
+        Parking parking = Parking.init(chargePolicy);
+//        parking.in(cars[0], Time.of(7, 0));
+        parking.hire(cashier);
 
         parking.in(cars[0], Time.of(8, 0));
         parking.in(cars[0], Time.of(8, 1));

@@ -3,12 +3,14 @@ package parking;
 import java.util.HashMap;
 
 public class Cashier {
+    private ChargePolicy chargePolicy;
     private HashMap<Car, Long> history;
 
     public Cashier() {
     }
 
-    public void hire(HashMap<Car, Long> history) {
+    public void hired(ChargePolicy chargePolicy, HashMap<Car, Long> history) {
+        this.chargePolicy = chargePolicy;
         this.history = history;
     }
 
@@ -22,7 +24,7 @@ public class Cashier {
         history.put(car, minutes);
     }
 
-    public void outcome(final Car car, final Time time, final ChargePolicy chargePolicy) {
+    public void outcome(final Car car, final Time time) {
         long minutes = time.getMinutes() - history.get(car);
         long charge = chargePolicy.calculate(minutes);
         notifyCharge(minutes, charge);

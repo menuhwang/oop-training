@@ -17,7 +17,7 @@ public class Parking {
 
     public void hire(final Cashier cashier) {
         this.cashier = cashier;
-        cashier.hire(history);
+        cashier.hired(chargePolicy, history);
     }
 
     public void in(final Car car, final Time time) {
@@ -37,7 +37,7 @@ public class Parking {
         System.out.println("[Parking]");
         System.out.printf("출차 --> %s\n", car);
 
-        cashier.outcome(car, time, chargePolicy);
+        cashier.outcome(car, time);
 
         printInfo();
     }

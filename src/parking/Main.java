@@ -1,5 +1,7 @@
 package parking;
 
+import static parking.CarFixture.*;
+
 public class Main {
     public static void main(String[] args) {
         final int basicTime = 30;
@@ -7,12 +9,11 @@ public class Main {
         final int unitTime = 60;
         final int unitCharge = 1200;
 
-        String[] carIds = {"11차 0000", "20차 1000", "00차 1200"};
-
-        Car[] cars = new Car[carIds.length];
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = new Car(carIds[i]);
-        }
+        Car[] cars = {
+                CAR1.create(),
+                CAR2.create(),
+                CAR3.create(),
+        };
 
         ChargePolicy chargePolicy = new ChargePolicy(basicTime, basicCharge, unitTime, unitCharge);
         Cashier cashier = new Cashier();

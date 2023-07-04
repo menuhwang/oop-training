@@ -1,5 +1,8 @@
 package parking;
 
+import parking.car.Car;
+import parking.chargepolicy.ChargePolicy;
+
 import java.util.HashMap;
 
 public class Parking {

@@ -1,5 +1,8 @@
 package parking;
 
+import parking.car.Car;
+import parking.chargepolicy.ChargePolicy;
+
 import java.util.HashMap;
 
 public class Cashier {
@@ -26,7 +29,7 @@ public class Cashier {
 
     public void outcome(final Car car, final Time time) {
         long minutes = time.getMinutes() - history.get(car);
-        long charge = chargePolicy.calculate(minutes);
+        long charge = chargePolicy.calculate(car, minutes);
         notifyCharge(minutes, charge);
         removeHistory(car);
     }

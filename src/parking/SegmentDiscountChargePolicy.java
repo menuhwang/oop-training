@@ -1,6 +1,7 @@
-package parking.chargepolicy;
+package parking;
 
-import parking.car.Car;
+import parking.core.car.Car;
+import parking.core.chargepolicy.DefaultChargePolicy;
 
 public class SegmentDiscountChargePolicy extends DefaultChargePolicy {
     private final int discountRatio;
@@ -12,8 +13,9 @@ public class SegmentDiscountChargePolicy extends DefaultChargePolicy {
 
     @Override
     public long calculate(final Car car, final long minutes) {
+        AdvancedCar advancedCar = (AdvancedCar) car;
         long charge = super.calculate(car, minutes);
-        if (car.isSegmentA()) return discount(charge);
+        if (advancedCar.isSegmentA()) return discount(charge);
         return charge;
     }
 

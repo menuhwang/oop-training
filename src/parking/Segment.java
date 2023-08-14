@@ -1,4 +1,4 @@
-package parking.car;
+package parking;
 
 public enum Segment {
     A("경차"),

@@ -1,7 +1,8 @@
-package parking;
+package parking.core.cashier;
 
-import parking.car.Car;
-import parking.chargepolicy.ChargePolicy;
+import parking.core.Time;
+import parking.core.car.Car;
+import parking.core.chargepolicy.ChargePolicy;
 
 import java.util.HashMap;
 
@@ -40,6 +41,7 @@ public class Cashier {
 
     private void notifyCharge(final long minutes, final long charge) {
         System.out.println("[Cashier]");
-        System.out.printf("이용 시간: %d[min]\n요금: %d[원]\n", minutes, charge);
+        System.out.printf("이용 시간: %d[min]\n", minutes);
+        System.out.printf("요금: %d[원]\n", charge);
     }
 }

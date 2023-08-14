@@ -1,7 +1,8 @@
-package parking;
+package parking.core;
 
-import parking.car.Car;
-import parking.chargepolicy.ChargePolicy;
+import parking.core.car.Car;
+import parking.core.cashier.Cashier;
+import parking.core.chargepolicy.ChargePolicy;
 
 import java.util.HashMap;
 
@@ -10,12 +11,8 @@ public class Parking {
     private Cashier cashier;
     private final HashMap<Car, Long> history = new HashMap<>();
 
-    private Parking(final ChargePolicy chargePolicy) {
+    Parking(final ChargePolicy chargePolicy) {
         this.chargePolicy = chargePolicy;
-    }
-
-    public static Parking init(final ChargePolicy chargePolicy) {
-        return new Parking(chargePolicy);
     }
 
     public void hire(final Cashier cashier) {

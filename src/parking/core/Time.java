@@ -1,4 +1,4 @@
-package parking;
+package parking.core;
 
 public class Time {
     private final int hour;

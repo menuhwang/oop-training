@@ -1,23 +1,17 @@
-package parking.car;
+package parking.core.car;
 
 import java.util.Objects;
 
 public class Car {
-    private final String id;
-    private final Segment segment;
+    protected final String id;
 
-    public Car(final String id, final String segment) {
+    public Car(final String id) {
         this.id = id;
-        this.segment = Segment.labelOf(segment);
-    }
-
-    public boolean isSegmentA() {
-        return segment == Segment.A;
     }
 
     @Override
     public String toString() {
-        return String.format("[Car] %s 차량번호:%s", segment.getLabel(), id);
+        return String.format("[Car] 차량번호:%s", id);
     }
 
     @Override

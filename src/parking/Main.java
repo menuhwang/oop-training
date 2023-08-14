@@ -1,8 +1,11 @@
 package parking;
 
-import parking.car.Car;
-import parking.chargepolicy.ChargePolicy;
-import parking.chargepolicy.ChargePolicyFactory;
+import parking.core.Parking;
+import parking.core.ParkingFactory;
+import parking.core.Time;
+import parking.core.car.Car;
+import parking.core.cashier.Cashier;
+import parking.core.chargepolicy.ChargePolicyFactory;
 
 import static parking.CarFixture.*;
 
@@ -15,23 +18,17 @@ public class Main {
         final int discountRatio = 50;
 
         Car[] cars = {
-                CAR1.create(),
-                CAR2.create(),
-                CAR3.create(),
+                new AdvancedCar(CAR1.getId(), CAR1.getSegment()),
+                new AdvancedCar(CAR2.getId(), CAR2.getSegment()),
+                new AdvancedCar(CAR3.getId(), CAR3.getSegment()),
         };
 
-        ChargePolicy chargePolicy = ChargePolicyFactory.builder()
-                .basicTime(basicTime)
-                .basicCharge(basicCharge)
-                .unitTime(unitTime)
-                .unitCharge(unitCharge)
-                .discountRatio(discountRatio)
-                .build();
+        ChargePolicyFactory.registerChargePolicy(new SegmentDiscountChargePolicy(basicTime, basicCharge, unitTime, unitCharge, discountRatio));
+        Parking parking = ParkingFactory.newParking();
+
+//        parking.in(cars[0], Time.of(7, 0)); // 캐셔 고용 전 입차
 
         Cashier cashier = new Cashier();
-
-        Parking parking = Parking.init(chargePolicy);
-//        parking.in(cars[0], Time.of(7, 0)); // 캐셔 고용 전 입차
         parking.hire(cashier);
 
         parking.in(cars[0], Time.of(8, 0));

@@ -1,7 +1,5 @@
 package parking;
 
-import parking.car.Car;
-
 public enum CarFixture {
     CAR1("11차 0000", "경차"),
     CAR2("20차 1000", "소형차"),
@@ -16,7 +14,11 @@ public enum CarFixture {
         this.segment = segment;
     }
 
-    public Car create() {
-        return new Car(id, segment);
+    public String getId() {
+        return id;
+    }
+
+    public String getSegment() {
+        return segment;
     }
 }
